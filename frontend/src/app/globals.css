@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Elysian Storefront — design tokens
+   Direction: editorial commerce. Print-catalog discipline over app-UI defaults.
+   Rules enforced here (see DESIGN.md): no gradients, no glass/blur, no glow,
+   no shadow-as-depth. Hierarchy comes from type scale, hairlines and rhythm.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Light theme: warm paper stock, ink, hairline rules */
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-2: #efebe3;
+  --line: #e2ddd3;
+  --line-strong: #c9c2b4;
+  --fg: #16150f;
+  --fg-muted: #5c584f;
+  --fg-faint: #7a7568;
+  --accent: #c8431b;
+  --accent-hover: #a93714;
+  --on-accent: #fdfbf7;
+  --danger: #a3221b;
+  --success: #1f6b3a;
+  --focus: #c8431b;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Dark theme: true near-black stock. Body text at ~16:1, never gray-on-gray */
+  --bg: #0b0b0c;
+  --surface: #141416;
+  --surface-2: #1d1d20;
+  --line: #2a2a2e;
+  --line-strong: #45454b;
+  --fg: #f4f2ed;
+  --fg-muted: #a6a39b;
+  --fg-faint: #807d75;
+  --accent: #ff6a3d;
+  --accent-hover: #ff855e;
+  --on-accent: #14100c;
+  --danger: #ff6b60;
+  --success: #6fd39a;
+  --focus: #ff6a3d;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  --font-sans: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Type scale, fluid. Editorial jumps: kicker -> body is deliberate. */
+  --text-kicker: 0.6875rem;
+  --text-kicker--line-height: 1.4;
+  --text-kicker--letter-spacing: 0.14em;
+  --text-kicker--font-weight: 500;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+
+  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-lg--line-height: 1.5;
+
+  --text-xl: clamp(1.5rem, 1.25rem + 1.2vw, 2.125rem);
+  --text-xl--line-height: 1.2;
+
+  --text-2xl: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --text-2xl--line-height: 1.06;
+  --text-2xl--letter-spacing: -0.02em;
+
+  --text-display: clamp(2.75rem, 1.75rem + 5vw, 5.5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.035em;
+
+  /* 4px rhythm. Use these names instead of arbitrary px values. */
+  --spacing-rhythm-xs: 0.25rem;
+  --spacing-rhythm-sm: 0.5rem;
+  --spacing-rhythm-md: 1rem;
+  --spacing-rhythm-lg: 1.5rem;
+  --spacing-rhythm-xl: 2.5rem;
+  --spacing-rhythm-2xl: 4rem;
+  --spacing-rhythm-3xl: 6.5rem;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Focus: visible, square, never a glow ring */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* Editorial headline widths. Applied explicitly, never as a default. */
+.display-expanded {
+  font-stretch: 112%;
+}
+
+.condensed {
+  font-stretch: 88%;
+}
+
+/* Kicker: mono-inflected section label. Uppercase, tracked, no pill. */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-kicker);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Prices and data figures: tabular, machine-set */
+.figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Hairline rule: the structural device instead of card borders */
+.rule {
+  border-top: 1px solid var(--line);
+}
+
+/* Text link: underline weight motion on hover, never opacity fade */
+.link-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--line-strong);
+  transition: text-decoration-color 140ms ease;
+}
+.link-underline:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* Editorial ticker (pauses on hover, respects reduced motion).
+   Deliberate motion, not ambient animation. */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: inline-flex;
+  animation: ticker 42s linear infinite;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
