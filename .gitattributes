@@ -1,0 +1,34 @@
+# Normalize text files to LF in the repository
+* text=auto eol=lf
+
+# TypeScript / JavaScript
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+
+# JSON / configuration
+*.json text eol=lf
+
+# CSS / styling
+*.css text eol=lf
+*.scss text eol=lf
+
+# Markdown / documentation
+*.md text eol=lf
+
+# Environment files
+*.env text eol=lf
+
+# Windows-specific files
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
