@@ -12,7 +12,7 @@ import { SITE } from "@/constants/nav";
 
 export const metadata: Metadata = {
     title: {
-        default: `${SITE.name} — PC games for Nepal`,
+        default: `${SITE.name} PC games for Nepal`,
         template: `%s · ${SITE.name}`,
     },
     description:
