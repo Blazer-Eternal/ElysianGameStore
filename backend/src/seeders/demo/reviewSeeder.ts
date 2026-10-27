@@ -31,13 +31,13 @@ interface DemoReview {
 }
 
 const REVIEWS: DemoReview[] = [
-    { user: "aarav", game: "snow-leopard-chronicles", recommend: true, rating: 5, body: null, moderation: ModerationStatus.APPROVED },
-    { user: "aarav", game: "kathmandu-drifter", recommend: true, rating: 4, body: null, moderation: ModerationStatus.APPROVED },
-    { user: "aarav", game: "cyber-yeti", recommend: false, rating: 2, body: null, moderation: ModerationStatus.APPROVED },
-    { user: "nisha", game: "neon-bazaar", recommend: true, rating: 4, body: null, moderation: ModerationStatus.APPROVED },
-    { user: "nisha", game: "prayer-flags", recommend: true, rating: null, body: null, moderation: ModerationStatus.APPROVED },
-    { user: "nisha", game: "yeti-siege", recommend: true, rating: 3, body: null, moderation: ModerationStatus.PENDING },
-    { user: "kiran", game: "terminus-null", recommend: true, rating: 5, body: null, moderation: ModerationStatus.APPROVED },
+    { user: "aarav", game: "elden-ring", recommend: true, rating: 5, body: "Exploration rewards curiosity everywhere. I clocked 90 hours before touching the last boss, and the build variety kept every area fresh on a second run.", moderation: ModerationStatus.APPROVED },
+    { user: "aarav", game: "hollow-knight", recommend: true, rating: 4, body: "Beautiful map design and tight controls. The early hours are cryptic about where to go next, but the payoff once abilities start stacking is worth it.", moderation: ModerationStatus.APPROVED },
+    { user: "aarav", game: "cyberpunk-2077", recommend: false, rating: 2, body: "Runs well now, but the city still feels hollow outside missions. Wait for a deeper sale unless you love the setting enough to forgive that.", moderation: ModerationStatus.APPROVED },
+    { user: "nisha", game: "stardew-valley", recommend: true, rating: 4, body: "My go-to wind-down game. Year two started to drag a little, but in co-op the chores split nicely and it stays fun.", moderation: ModerationStatus.APPROVED },
+    { user: "nisha", game: "terraria", recommend: true, rating: null, body: "Endless content for the price. Boss progression keeps handing you new tools, and multiplayer with friends is chaos in the best way.", moderation: ModerationStatus.APPROVED },
+    { user: "nisha", game: "hades", recommend: true, rating: 3, body: "Combat is superb and the story keeps moving even when a run fails. I wish there were more regions before it starts to repeat.", moderation: ModerationStatus.PENDING },
+    { user: "kiran", game: "doom-eternal", recommend: true, rating: 5, body: "The best shooter pacing in years. Glory kills keep you moving and every weapon has a reason to exist. No downtime anywhere.", moderation: ModerationStatus.APPROVED },
 ];
 
 export const runReviewSeeder = async (): Promise<{ created: Record<string, number> }> => {

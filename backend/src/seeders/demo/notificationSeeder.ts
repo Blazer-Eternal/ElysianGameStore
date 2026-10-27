@@ -84,8 +84,8 @@ export const runNotificationSeeder = async (): Promise<{ created: Record<string,
 
     // ---- REFUND approvals ----
     const refundNotifs: Array<{ key: string; user: string; text: string }> = [
-        { key: "nisha-3", user: "nisha", text: "Your refund for Cyber Yeti was approved and processed." },
-        { key: "aarav-3", user: "aarav", text: "Your partial refund for Rickshaw Rumble was approved and processed." },
+        { key: "nisha-3", user: "nisha", text: "Your refund for Hogwarts Legacy was approved and processed." },
+        { key: "aarav-3", user: "aarav", text: "Your partial refund for Portal 2 was approved and processed." },
     ];
     for (const notif of refundNotifs) {
         const userId = userIdByKey.get(notif.user);
@@ -105,29 +105,29 @@ export const runNotificationSeeder = async (): Promise<{ created: Record<string,
 
     // ---- PROMOTION fan-out to wishlisters (one converted, one unread) ----
     const nishaId = userIdByKey.get("nisha");
-    const nishaSnowOrder = await Order.findOne({ where: { id: seedUuid("order:nisha-2") } });
-    if (nishaId && nishaSnowOrder) {
+    const nishaGtaOrder = await Order.findOne({ where: { id: seedUuid("order:nisha-2") } });
+    if (nishaId && nishaGtaOrder) {
         await insert({
-            id: seedUuid("notification:promotion:nisha-snow-leopard"),
+            id: seedUuid("notification:promotion:nisha-gta-v"),
             userId: nishaId,
             type: NotificationType.PROMOTION,
-            title: "Snow Leopard Chronicles is 25% off",
+            title: "Grand Theft Auto V is 25% off",
             body: "A game on your wishlist is on sale during the Monsoon Mega Sale.",
-            data: { gameSlug: "snow-leopard-chronicles", promotion: "Monsoon Mega Sale" },
+            data: { gameSlug: "grand-theft-auto-v", promotion: "Monsoon Mega Sale" },
             readAt: new Date(Date.now() - 2 * 86400000),
             // bought the promoted game afterwards → conversion stamped
-            convertedAt: nishaSnowOrder.paidAt,
+            convertedAt: nishaGtaOrder.paidAt,
         });
     }
     const kiranId = userIdByKey.get("kiran");
     if (kiranId) {
         await insert({
-            id: seedUuid("notification:promotion:kiran-cyber-yeti"),
+            id: seedUuid("notification:promotion:kiran-celeste"),
             userId: kiranId,
             type: NotificationType.PROMOTION,
-            title: "Cyber Yeti is 25% off",
+            title: "Celeste is 25% off",
             body: "A game on your wishlist is on sale during the Monsoon Mega Sale.",
-            data: { gameSlug: "cyber-yeti", promotion: "Monsoon Mega Sale" },
+            data: { gameSlug: "celeste", promotion: "Monsoon Mega Sale" },
         });
     }
 

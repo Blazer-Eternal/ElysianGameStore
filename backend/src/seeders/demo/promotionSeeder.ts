@@ -43,11 +43,11 @@ export const DEMO_PROMOTIONS: DemoPromotion[] = [
         fundedBy: FundedBy.STORE,
         createdByEmail: "demo.admin@example.com",
         games: [
-            { slug: "snow-leopard-chronicles", discountPct: 25 },
-            { slug: "yeti-siege", discountPct: 25 },
-            { slug: "neon-bazaar", discountPct: 25 },
-            { slug: "cyber-yeti", discountPct: 25 },
-            { slug: "prayer-flags", discountPct: 25 },
+            { slug: "grand-theft-auto-v", discountPct: 25 },
+            { slug: "hogwarts-legacy", discountPct: 25 },
+            { slug: "hades", discountPct: 25 },
+            { slug: "it-takes-two", discountPct: 25 },
+            { slug: "celeste", discountPct: 25 },
         ],
     },
     {
@@ -59,10 +59,10 @@ export const DEMO_PROMOTIONS: DemoPromotion[] = [
         fundedBy: FundedBy.PUBLISHER,
         createdByEmail: "himalaya.studio@example.com",
         games: [
-            { slug: "kathmandu-drifter", discountPct: 15 },
-            { slug: "monsoon-mayhem", discountPct: 15 },
-            { slug: "rickshaw-rumble", discountPct: 15 },
-            { slug: "everest-base-camp-tycoon", discountPct: 15 },
+            { slug: "portal-2", discountPct: 15 },
+            { slug: "left-4-dead-2", discountPct: 15 },
+            { slug: "team-fortress-2", discountPct: 15 },
+            { slug: "half-life-alyx", discountPct: 15 },
         ],
     },
     {
@@ -74,9 +74,9 @@ export const DEMO_PROMOTIONS: DemoPromotion[] = [
         fundedBy: FundedBy.STORE,
         createdByEmail: "demo.admin@example.com",
         games: [
-            { slug: "himalayan-heights", discountPct: 40 },
-            { slug: "dharma-defenders", discountPct: 40 },
-            { slug: "midnight-mandala", discountPct: 40 },
+            { slug: "baldurs-gate-3", discountPct: 40 },
+            { slug: "disco-elysium", discountPct: 40 },
+            { slug: "sekiro-shadows-die-twice", discountPct: 40 },
         ],
     },
     {
@@ -88,8 +88,8 @@ export const DEMO_PROMOTIONS: DemoPromotion[] = [
         fundedBy: FundedBy.STORE,
         createdByEmail: "demo.admin@example.com",
         games: [
-            { slug: "sherpa-ascending", discountPct: 40 },
-            { slug: "cloud-kingdoms", discountPct: 40 },
+            { slug: "persona-5-royal", discountPct: 40 },
+            { slug: "black-myth-wukong", discountPct: 40 },
         ],
     },
     {
@@ -101,10 +101,10 @@ export const DEMO_PROMOTIONS: DemoPromotion[] = [
         fundedBy: FundedBy.STORE,
         createdByEmail: "demo.admin@example.com",
         games: [
-            { slug: "terminus-null", discountPct: 30 },
-            { slug: "summit-siege-legends", discountPct: 30 },
-            { slug: "raktaksha-protocol", discountPct: 30 },
-            { slug: "ghost-street-kathmandu", discountPct: 30 },
+            { slug: "cyberpunk-2077", discountPct: 30 },
+            { slug: "red-dead-redemption-2", discountPct: 30 },
+            { slug: "forza-horizon-5", discountPct: 30 },
+            { slug: "rainbow-six-siege", discountPct: 30 },
         ],
     },
 ];

@@ -2,9 +2,9 @@
 // case only where the backend actually returns it). Keep in step with
 // backend/src/interfaces — these describe what the storefront consumes.
 
-export type AgeRating = "ALL" | "E10" | "T" | "M" | "AO";
+export type AgeRating = "E" | "T" | "M" | "AO";
 export type Role = "CUSTOMER" | "PUBLISHER" | "ADMIN";
-export type GameStatus = "DRAFT" | "PENDING_REVIEW" | "PUBLISHED" | "REJECTED" | "DELISTED";
+export type GameStatus = "DRAFT" | "IN_REVIEW" | "PUBLISHED" | "DELISTED";
 
 /* ------------------------------------------------------------------ auth */
 
@@ -71,14 +71,15 @@ export interface GameMedia {
 
 export interface SystemRequirement {
     id?: string;
-    type: "MINIMUM" | "RECOMMENDED";
+    gameId?: string;
+    /** Backend codes: MIN (minimum), REC (recommended). */
+    type: "MIN" | "REC";
     os: string | null;
-    processor: string | null;
-    memory: string | null;
-    graphics: string | null;
-    storage: string | null;
+    cpu: string | null;
+    gpu: string | null;
+    ramGb: number | null;
+    storageGb: number | null;
     directx: string | null;
-    notes: string | null;
 }
 
 export interface GameBuildSummary {
@@ -91,10 +92,10 @@ export interface GameBuildSummary {
 
 export interface PriceSummary {
     basePricePaisa: number;
+    promoDiscountPaisa: number;
     currentPricePaisa: number;
-    promotionDiscountPaisa: number;
     promotionId: string | null;
-    taxRateBps?: number;
+    taxRateBps: number;
 }
 
 export interface GameDetail {
@@ -114,7 +115,13 @@ export interface GameDetail {
         publishedAt: string | null;
         createdAt: string;
     };
-    publisher: { id: string; studioName: string; slug?: string; verified?: boolean } | null;
+    publisher: {
+        id: string;
+        name: string;
+        legalName?: string;
+        status?: string;
+        revenueSharePct?: number;
+    } | null;
     genres: Genre[];
     tags: Tag[];
     systemRequirements: SystemRequirement[];
@@ -265,7 +272,7 @@ export interface Review {
     recommend: boolean;
     rating: number | null;
     body: string | null;
-    playtimeMinutes: number;
+    playtimeMinutes?: number | null;
     helpfulCount: number;
     moderationStatus: "PENDING" | "APPROVED" | "REJECTED";
     createdAt: string;

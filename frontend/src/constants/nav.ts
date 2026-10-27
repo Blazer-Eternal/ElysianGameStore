@@ -54,11 +54,10 @@ export const SORT_OPTIONS = [
 ] as const;
 
 export const AGE_RATING_LABELS: Record<string, string> = {
-    ALL: "All ages",
-    E10: "Everyone 10+",
+    E: "Everyone",
     T: "Teen",
     M: "Mature 17+",
-    AO: "Adults only",
+    AO: "Adults only 18+",
 };
 
 export const SITE = {

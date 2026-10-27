@@ -1,10 +1,21 @@
 import { QueryTypes, Transaction } from "sequelize";
 
 import { Database } from "../config";
+import { MediaType } from "../enums/mediaTypeEnum";
 import Game from "../models/gameModel";
+import GameMedia from "../models/gameMediaModel";
 import Wishlist from "../models/wishlistModel";
 
 const { sequelize } = Database;
+
+// Wishlist rows render as game cards, so COVER artwork is fetched with them.
+const gameWithCover = {
+    model: Game,
+    as: "game",
+    include: [
+        { model: GameMedia, as: "media", where: { type: MediaType.COVER }, required: false },
+    ],
+};
 
 class WishlistRepository {
     /** Idempotent add: a duplicate pair is a no-op, not an error. */
@@ -48,7 +59,7 @@ class WishlistRepository {
         // is exact.
         return Wishlist.findAndCountAll({
             where: { userId },
-            include: [{ model: Game, as: "game" }],
+            include: [gameWithCover],
             limit: params.limit,
             offset: params.offset,
             order: [["added_at", "DESC"]],

@@ -65,29 +65,31 @@ interface SeedOrder {
 }
 
 export const SEED_ORDERS: SeedOrder[] = [
-    { key: "aarav-1", user: "aarav", games: ["snow-leopard-chronicles", "kathmandu-drifter"], coupon: null, provider: PaymentProvider.ESEWA, status: OrderStatus.PAID, daysAgo: 12 },
-    { key: "aarav-2", user: "aarav", games: ["cyber-yeti"], coupon: "DASHAIN500", provider: PaymentProvider.KHALTI, status: OrderStatus.PAID, daysAgo: 6 },
-    { key: "nisha-1", user: "nisha", games: ["neon-bazaar", "yeti-siege", "prayer-flags"], coupon: "WELCOME10", provider: PaymentProvider.CONNECTIPS, status: OrderStatus.PAID, daysAgo: 9 },
-    { key: "nisha-2", user: "nisha", games: ["snow-leopard-chronicles", "ghost-street-kathmandu"], coupon: null, provider: PaymentProvider.IMEPAY, status: OrderStatus.PAID, daysAgo: 4 },
-    { key: "kiran-1", user: "kiran", games: ["terminus-null"], coupon: null, provider: PaymentProvider.ESEWA, status: OrderStatus.PAID, daysAgo: 7 },
-    { key: "kiran-2", user: "kiran", games: ["himalayan-heights"], coupon: null, provider: PaymentProvider.ESEWA, status: OrderStatus.PENDING, daysAgo: 1 },
-    { key: "kiran-3", user: "kiran", games: ["sherpa-ascending"], coupon: null, provider: PaymentProvider.KHALTI, status: OrderStatus.FAILED, daysAgo: 2 },
-    { key: "nisha-3", user: "nisha", games: ["cyber-yeti"], coupon: null, provider: PaymentProvider.IMEPAY, status: OrderStatus.REFUNDED, daysAgo: 14, refundDaysAgo: 10 },
-    { key: "aarav-3", user: "aarav", games: ["monsoon-mayhem", "rickshaw-rumble"], coupon: null, provider: PaymentProvider.CONNECTIPS, status: OrderStatus.PARTIAL_REFUND, daysAgo: 8, refundGames: ["rickshaw-rumble"], refundDaysAgo: 5 },
+    { key: "aarav-1", user: "aarav", games: ["elden-ring", "hollow-knight"], coupon: null, provider: PaymentProvider.ESEWA, status: OrderStatus.PAID, daysAgo: 12 },
+    { key: "aarav-2", user: "aarav", games: ["cyberpunk-2077"], coupon: "DASHAIN500", provider: PaymentProvider.KHALTI, status: OrderStatus.PAID, daysAgo: 6 },
+    { key: "nisha-1", user: "nisha", games: ["stardew-valley", "terraria", "undertale"], coupon: "WELCOME10", provider: PaymentProvider.CONNECTIPS, status: OrderStatus.PAID, daysAgo: 9 },
+    { key: "nisha-2", user: "nisha", games: ["grand-theft-auto-v", "hades"], coupon: null, provider: PaymentProvider.IMEPAY, status: OrderStatus.PAID, daysAgo: 4 },
+    { key: "kiran-1", user: "kiran", games: ["doom-eternal"], coupon: null, provider: PaymentProvider.ESEWA, status: OrderStatus.PAID, daysAgo: 7 },
+    { key: "kiran-2", user: "kiran", games: ["subnautica"], coupon: null, provider: PaymentProvider.ESEWA, status: OrderStatus.PENDING, daysAgo: 1 },
+    { key: "kiran-3", user: "kiran", games: ["celeste"], coupon: null, provider: PaymentProvider.KHALTI, status: OrderStatus.FAILED, daysAgo: 2 },
+    { key: "nisha-3", user: "nisha", games: ["hogwarts-legacy"], coupon: null, provider: PaymentProvider.IMEPAY, status: OrderStatus.REFUNDED, daysAgo: 14, refundDaysAgo: 10 },
+    { key: "aarav-3", user: "aarav", games: ["cuphead", "portal-2"], coupon: null, provider: PaymentProvider.CONNECTIPS, status: OrderStatus.PARTIAL_REFUND, daysAgo: 8, refundGames: ["portal-2"], refundDaysAgo: 5 },
 ];
 
 // Carts: a couple of not-yet-owned games per customer.
 const SEED_CARTS: Record<string, string[]> = {
-    aarav: ["terminus-null", "everest-base-camp-tycoon"],
-    nisha: ["summit-siege-legends", "midnight-mandala"],
-    kiran: ["neon-bazaar", "dharma-defenders", "cloud-kingdoms"],
+    aarav: ["resident-evil-4", "factorio"],
+    nisha: ["disco-elysium", "black-myth-wukong"],
+    kiran: ["baldurs-gate-3", "sea-of-thieves", "elden-ring"],
 };
 
-// Wishlists (fixed added_at so the rows are stable).
+// Wishlists (fixed added_at so the rows are stable). nisha's wishlist keeps
+// Grand Theft Auto V — she was notified about the sale and bought it, which
+// is what the PROMOTION conversion notification records.
 const SEED_WISHLISTS: Record<string, string[]> = {
-    aarav: ["raktaksha-protocol", "cloud-kingdoms", "project-sagarmatha"],
-    nisha: ["snow-leopard-chronicles", "yeti-siege", "summit-siege-legends"],
-    kiran: ["terminus-null", "cyber-yeti", "ghost-street-kathmandu"],
+    aarav: ["baldurs-gate-3", "red-dead-redemption-2", "persona-5-royal"],
+    nisha: ["grand-theft-auto-v", "it-takes-two", "slay-the-spire"],
+    kiran: ["counter-strike-2", "dota-2", "celeste"],
 };
 
 // What the order loop needs from a quote — either freshly computed by the

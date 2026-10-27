@@ -1,6 +1,8 @@
 import { GameStatus } from "../enums/gameStatusEnum";
+import { MediaType } from "../enums/mediaTypeEnum";
 import Cart from "../models/cartModel";
 import Game from "../models/gameModel";
+import { GameMedia } from "../models";
 import { CartItemRepository, CartRepository, LibraryEntryRepository } from "../repositories";
 import AppError from "../utils/appError";
 import { computeQuote, PriceQuote } from "./pricingServices";
@@ -35,10 +37,20 @@ export const getCart = async (userId: string): Promise<{
             ? await computeQuote({ gameIds, userId, requirePublished: false }).catch(() => null)
             : null;
 
+    // Cover artwork comes from the partial-unique COVER row in game_media,
+    // same source the catalogue search uses.
     const coverByGame = new Map<string, string | null>();
-    for (const item of items) {
-        const game = item.game as unknown as Game | undefined;
-        if (game) coverByGame.set(game.id, null);
+    if (gameIds.length > 0) {
+        const covers = await GameMedia.findAll({
+            where: { gameId: gameIds, type: MediaType.COVER },
+            order: [["sortOrder", "ASC"]],
+        });
+        for (const row of covers) {
+            if (!coverByGame.has(row.gameId)) coverByGame.set(row.gameId, row.url);
+        }
+        for (const id of gameIds) {
+            if (!coverByGame.has(id)) coverByGame.set(id, null);
+        }
     }
 
     return {

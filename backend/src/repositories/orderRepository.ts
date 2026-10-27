@@ -1,13 +1,31 @@
 import { Op, Transaction } from "sequelize";
 
 import { Database } from "../config";
+import { MediaType } from "../enums/mediaTypeEnum";
 import Game from "../models/gameModel";
+import GameMedia from "../models/gameMediaModel";
 import Order from "../models/orderModel";
 import OrderItem from "../models/orderItemModel";
 import Payment from "../models/paymentModel";
 import { IOrder, IOrderCreation } from "../interfaces/orderInterface";
 
 const { sequelize } = Database;
+
+// Items ride with their game and the game's COVER artwork, so the storefront
+// can render order lines without a second round trip.
+const itemWithGame = {
+    model: OrderItem,
+    as: "items",
+    include: [
+        {
+            model: Game,
+            as: "game",
+            include: [
+                { model: GameMedia, as: "media", where: { type: MediaType.COVER }, required: false },
+            ],
+        },
+    ],
+};
 
 class OrderRepository {
     static async create(data: IOrderCreation, transaction?: Transaction): Promise<Order> {
@@ -21,7 +39,7 @@ class OrderRepository {
     static async findByIdWithItems(id: string): Promise<Order | null> {
         return Order.findByPk(id, {
             include: [
-                { model: OrderItem, as: "items" },
+                itemWithGame,
                 { model: Payment, as: "payments" },
             ],
         });
@@ -47,7 +65,7 @@ class OrderRepository {
         if (params.status) where.status = params.status;
         return Order.findAndCountAll({
             where,
-            include: [{ model: OrderItem, as: "items" }],
+            include: [itemWithGame],
             limit: params.limit,
             offset: params.offset,
             order: [["created_at", "DESC"]],
