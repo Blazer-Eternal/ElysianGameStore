@@ -41,3 +41,4 @@ class GameMediaRepository {
 }
 
 export default GameMediaRepository;
+

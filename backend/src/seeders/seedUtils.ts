@@ -52,3 +52,4 @@ export const insertedCount = (metadata: unknown): number => {
     const rowCount = (metadata as { rowCount?: number } | undefined)?.rowCount;
     return typeof rowCount === "number" ? rowCount : 0;
 };
+

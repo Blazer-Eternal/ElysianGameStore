@@ -29,3 +29,5 @@ class AuditLogRepository {
 }
 
 export default AuditLogRepository;
+
+
